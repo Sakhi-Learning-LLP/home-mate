@@ -1,0 +1,92 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.1em;
+}
+
+header{
+    border: 2px solid rgb(9, 97, 132);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 20px;
+    font-size: 1.6em;
+    background-color: rgb(205, 236, 249);
+}
+
+header img{
+    height: 70px;
+}
+
+#heading{
+    margin: 20px;
+    margin-top: 100px;
+    text-align: center;
+    display: inline-block;
+}
+
+#add-button{
+    margin: 20px;
+    border: 2px solid rgb(9, 97, 132);
+    background-color: rgb(18, 129, 173);
+    padding: 7px 15px;
+    border-radius: 60px;
+    float: right;
+}
+
+#add-button:hover{
+    background-color: black;
+    color: rgb(142, 205, 229);
+}
+
+#menus{
+    display: flex;
+    margin-top: 100px;
+    justify-content: center;
+}
+
+#containers{
+    border: 2px solid rgb(9, 97, 132);
+    border-radius: 40px;
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 40px;
+    padding: 10px;
+}
+
+#items{
+    border: 2px solid rgb(9, 97, 132);
+    border-radius: 40px;
+    display: inline-flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 40px;
+    padding: 10px;    
+}
+
+.container{
+    border: 2px solid black;
+    display: inline;
+    background-color: rgb(177, 227, 246);
+    margin: 20px;
+    padding: 15px 45px;
+}
+
+.container:hover{
+    background-color: black;
+    color: rgb(177, 227, 246);
+}
+
+.item{
+    border: 2px solid black;
+    display: inline;  
+    background-color: rgb(106, 199, 236);
+    margin: 20px;
+    padding: 15px 45px;  
+}
+
+.item:hover{
+    background-color: black;
+    color: rgb(142, 205, 229);
+}
