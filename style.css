@@ -25,3 +25,7 @@ nav{
     background-color: black;
     color: white;
 }
+
+.list-group a{
+    background-color: rgb(161, 161, 161);
+}
