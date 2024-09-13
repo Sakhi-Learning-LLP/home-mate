@@ -27,13 +27,10 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="categories.html">Categories</a></li>
-                  <li><a class="dropdown-item" href="#">Items</a></li>
+                  <li><a class="dropdown-item" href="items.html">Items</a></li>
                 </ul>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <button class="btn btn-outline-success" type="submit">+</button>
-            </form>
           </div>
         </div>
       </nav>
@@ -44,11 +41,37 @@
           <button type="button" class="list-group-item list-group-item-action">Fans</button>
           <button type="button" class="list-group-item list-group-item-action">Beds</button>
           <button type="button" class="list-group-item list-group-item-action">Washrooms</button> 
-          <button type="button" class="list-group-item list-group-item-action">Plants</button> 
+          <button type="button" class="list-group-item list-group-item-action">Plants</button>
+            <!-- Button trigger modal -->
+<button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Create Category + 
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Create Category</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group flex-nowrap">
+          <span class="input-group-text" id="addon-wrapping">Category Name</span>
+          <input type="text" class="form-control" placeholder="Category" aria-label="Username" aria-describedby="addon-wrapping">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
        
         </div>
         <div class="list-group flex-grow-1" id="items">
-          <a href="#" class="list-group-item list-group-item-action">Items</a>
+          <a href="items.html" class="list-group-item list-group-item-action">Items</a>
           
           <button type="button" class="list-group-item list-group-item-action" onclick="openItemPage">Bedroom Fan 1</button>
           
@@ -57,8 +80,36 @@
           <button type="button" class="list-group-item list-group-item-action" onclick="openItemPage">Ground floor fan</button>
           
           <button type="button" class="list-group-item list-group-item-action" onclick="openItemPage">Kitchen Fan</button>
+
+          <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModalitems">
+            Create Item + 
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModalitems" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Create Item</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="input-group flex-nowrap">
+                    <span class="input-group-text" id="addon-wrapping">Item Name</span>
+                    <input type="text" class="form-control" placeholder="Item" aria-label="Username" aria-describedby="addon-wrapping">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Create</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
       </script>
