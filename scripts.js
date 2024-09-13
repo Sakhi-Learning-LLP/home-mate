@@ -1,26 +1,12 @@
-document.getElementById("add-button").addEventListener("click", function(){
-    let newContainer = document.createElement("div");
-    newContainer.classList.add('box');
-    newContainer.textContent = "Fans";
-    document.getElementById("containers").appendChild(newContainer);
+const listItems = document.querySelectorAll('.list-group-item');
+
+listItems.forEach(listItem => {
+  listItem.addEventListener('click', () => {
+    const itemId = listItem.getAttribute('data-item-id');
+    openItemPage(itemId);
+  });
 });
 
-document.getElementById("add-button").addEventListener("click", function(){
-    let newContainer = document.createElement("div");
-    newContainer.classList.add('box');
-    newContainer.textContent = "Beds";
-    document.getElementById("containers").appendChild(newContainer);
-});
-document.getElementById("add-button").addEventListener("click", function(){
-    let newContainer = document.createElement("div");
-    newContainer.classList.add('box');
-    newContainer.textContent = "Plants";
-    document.getElementById("containers").appendChild(newContainer);
-});
-document.getElementById("add-button").addEventListener("click", function(){
-    let newContainer = document.createElement("div");
-    newContainer.classList.add('box');
-    newContainer.textContent = "Washrooms";
-    document.getElementById("containers").appendChild(newContainer);
-    document.getElementById('items').appendChild(newItems);
-});
+function openItemPage(itemId) {
+  window.location.href = 'items/item1.html?id=' + itemId;
+}
