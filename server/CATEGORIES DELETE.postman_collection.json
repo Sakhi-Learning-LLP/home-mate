@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "d00ea6eb-f6e7-4a24-805f-dceb2dca8633",
+		"name": "CATEGORIES DELETE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38122067"
+	},
+	"item": [
+		{
+			"name": "DELETE ONE CATEGORY",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check for status code 200 (OK) or 204 (No Content)\r",
+							"pm.test(\"Status code is 200 or 204\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);\r",
+							"});\r",
+							"\r",
+							"// Log the response body to inspect the exact message\r",
+							"console.log(pm.response.json());\r",
+							"\r",
+							"// Check if the response contains the success message\r",
+							"// pm.test(\"Response contains success message\", function () {\r",
+							"//     var jsonData = pm.response.json();\r",
+							"//     // Adjust the expected message based on the actual response message\r",
+							"//     pm.expect(jsonData.message).to.eql(\"Category Deleted Successfully\");\r",
+							"// });\r",
+							"\r",
+							"// Alternatively, check if the response body is empty for a 204 No Content response\r",
+							"pm.test(\"Response body should be empty for 204 status\", function () {\r",
+							"    if (pm.response.code === 204) {\r",
+							"        pm.expect(pm.response.text()).to.be.empty;\r",
+							"    }\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/categories/v1/categories/66e933f5dcef86a9757e418f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"categories",
+						"v1",
+						"categories",
+						"66e933f5dcef86a9757e418f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE ALL CATEGORIES",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Check if the status code is 200 (OK) or 204 (No Content)\r",
+							"pm.test(\"Status code is 200 (OK) or 204 (No Content)\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 204]);\r",
+							"});\r",
+							"\r",
+							"// // Send a GET request to verify all categories are deleted\r",
+							"// pm.test(\"Verify all categories are deleted\", function () {\r",
+							"//     pm.sendRequest({\r",
+							"//         url: pm.environment.get(\"API_BASE_URL\") + \"/api/categories/getall\",\r",
+							"//         method: 'GET',\r",
+							"//         header: {\r",
+							"//             'Content-Type': 'application/json'\r",
+							"//         }\r",
+							"//     }, function (err, res) {\r",
+							"//         // Ensure the GET request was successful\r",
+							"//         pm.expect(res).to.have.property('code', 200);\r",
+							"\r",
+							"//         // Parse the response from the GET request\r",
+							"//         var responseData = res.json();\r",
+							"\r",
+							"//         // Ensure responseData is an array (should be empty if all categories are deleted)\r",
+							"//         pm.expect(responseData).to.be.an('array');\r",
+							"\r",
+							"//         // Check if the categories array is empty\r",
+							"//         pm.expect(responseData.length).to.eql(0);\r",
+							"//     });\r",
+							"// });\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/categories/v1/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"categories",
+						"v1",
+						"categories"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
