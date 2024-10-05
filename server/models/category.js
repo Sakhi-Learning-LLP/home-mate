@@ -8,6 +8,12 @@ const ItemSchema=new mongoose.Schema({
     },
     CreatedAt:{type:Date,
         default:Date.now
+    },
+    instructions:{type:String,
+        required:false
+    },
+    workFinish:{type:Boolean,
+        default:false
     }
 });
 const CategorySchema=new mongoose.Schema({

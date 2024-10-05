@@ -88,19 +88,43 @@ router.delete('/v1/categories/:id',async(req,res)=>{
 //----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 router.post('/v1/categories/:id/items',async(req,res)=>{
-    const {name,description} = req.body;
+    const {name,description,instructions} = req.body;
     const{id}=req.params;
+
+    // Log incoming data for debugging
+    console.log("Request Body:", req.body);
 
     try{
         const category=await Category.findById(id);
         if(!category){
             res.status(400).json({message:"Category not found!!"});
         }
-        const newItem={name,description};
+
+        const newItem={name,description,instructions,workFinish:false};
         category.items.push(newItem);
         await category.save();
         res.status(201).json({message:"Item Added Successfully!!!!"});
     }catch(err){
+        res.status(500).json({message:"server error", error:err.message})
+    }
+});
+
+router.put('/v1/categories/:categoryId/items/:itemId',async(req,res)=>{
+    const {categoryId,itemId}=req.params;
+    try{
+        const category=await Category.findById(categoryId);
+        if(!category){
+            return res.status(404).json({message:"Category not found!!"});
+        }
+        const item=category.items.id(itemId);
+        if(!item){
+            return res.status(404).json({message:"Item not found"});
+        }
+        item.workFinish=!item.workFinish;
+        await category.save();
+        res.status(200).json({message:"Item updated successfully!",item});
+    }
+    catch(error){
         res.status(500).json({message:"server error", error:err.message})
     }
 });

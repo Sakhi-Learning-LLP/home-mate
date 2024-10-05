@@ -4,16 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categories</title>
     <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+
         body {
             background-color: #f8f4e3; /* Same background color as Home */
             font-family: 'Arial', sans-serif; /* Same font family */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         nav {
             background-color: #e3c9b8; /* Same navbar background color */
+            padding: 0.5rem 1rem; /* Ensure consistent padding */
+        }
+
+        .navbar-brand img {
+            height: 30px;
+        }
+
+        .add-item-button {
+            position: relative;
+            margin-left: 20px; /* Add margin for spacing */
+        }
+
+        .add-item-button button {
+            background-color: #b29a7a; /* Darker background color for the button */
+            border: none; /* Remove border */
+            border-radius: 50%; /* Make it circular */
+            width: 50px; /* Set width */
+            height: 50px; /* Set height */
+            display: flex; /* Center the icon */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            transition: background-color 0.3s; /* Add transition for hover effect */
+        }
+
+        .add-item-button button:hover {
+            background-color: #a58d74; /* Darker shade on hover */
+        }
+
+        .add-item-message {
+            display: none;
+            position: absolute;
+            bottom: auto; /* Adjusted to show above the button */
+            right: 10;
+            background-color: #f5e3d8; /* Light background for message */
+            color: black;
+            padding: 5px;
+            border-radius: 5px;
+            z-index: 1;
+        }
+
+        .add-item-button:hover .add-item-message {
+            display: block; /* Show message on hover */
         }
 
         .breadcrumb {
@@ -33,6 +85,7 @@
             background-color: #d2b59c; /* Same header color as Home */
             color: white;
             font-weight: bold;
+            position: relative; /* Make it relative for positioning child elements */
         }
 
         .list-group-item {
@@ -49,78 +102,156 @@
             padding: 20px;
             background-color: #343a40;
             color: white;
+            margin-top: 20px;
         }
 
         .footer a {
-            color: #ffc107; /* Link color in footer */
-            text-decoration: none;
+            color: #b29a7a;
+        }
+
+        .footer a:hover {
+            color: white;
+        }
+
+        /* Sticky footer */
+        .footer {
+            flex-shrink: 0;
         }
 
         .container {
             margin-top: 2em; /* Margin for container */
         }
+
+        #itemFormContainer {
+            display: none; /* Hide the form initially */
+            margin-top: 20px;
+        }
+
+        /* Updated button styles */
+        .btn-primary {
+            background-color: #d2b59c; /* Updated primary button color */
+            border-color: #d2b59c; /* Match border color */
+        }
+
+        .btn-primary:hover {
+            background-color: #c2a288; /* Darker shade on hover */
+            border-color: #c2a288; /* Match border color */
+        }
+
+        /* Style for checkboxes */
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: green; /* Green color when the checkbox is clicked */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        input[type="checkbox"]:checked {
+            transform: scale(1.2); /* Slightly increase the size when checked */
+        }
+
+        /* Delete button styling */
+        .delete-button {
+            background-color: #ff6666; /* Red background for delete button */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .delete-button:hover {
+            background-color: #cc0000; /* Darker red on hover */
+        }
+
+        /* Increase the size of the card containing items */
+        .card {
+            width: 100%; /* Make the card larger */
+            max-width: 900px; /* Set a maximum width */
+            margin: 20px auto; /* Center the card horizontally */
+        }
+
+        .list-group-item {
+            font-size: 18px; /* Increase the font size of items */
+        }
+
+        .list-group-item input[type="checkbox"] {
+            margin-right: 10px; /* Add some space between the checkbox and text */
+        }
+
     </style>
 </head>
 
 <body>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="home.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Categories</li>
-        </ol>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="Home.html">
+                <img src="home.png" alt="Home" class="img-fluid" style="max-width: 50px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+                <li class="nav-item add-item-button">
+                    <button class="btn" id="showFormButton">
+                        <i class="bi bi-plus" style="font-size: 24px; color: white;"></i> <!-- Plus icon -->
+                    </button>
+                    <div class="add-item-message">Add Item</div> <!-- Hover message -->
+                </li>
+            </div>
+        </div>
     </nav>
 
+    <!-- <div>
+        <ul id="ItemList"></ul>
+    </div> -->
     <div class="container">
-        <h2 class="text-center mb-4">Categories</h2>
+        <!-- <h2 class="text-center mb-4">Category Items:</h2> -->
         <div id="categoryContainer" style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap;"></div>
+
+        <div id="ResponseMessage" class="text-danger mt-2"></div>
+        <div id="itemFormContainer">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h2>Add Item to Category</h2>
+                    <button class="btn-close" id="cancelButton" aria-label="Close" style="position: absolute; right: 10px; top: 10px;"></button>
+                </div>
+                <div class="card-body">
+                    <form id="ItemForm">
+                        <div class="mb-3">
+                            <input type="text" id="ItemName" class="form-control"
+                                placeholder="Enter item name" required />
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" id="ItemDescription" class="form-control"
+                                placeholder="Enter item description (optional)" />
+                        </div>
+                        <div class="mb-3"></div>
+                            <input type="text" id="ItemInstruction" class="form-control"
+                                placeholder="How you want to clean the item (optional)" />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Item</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="footer mt-4">
         <p>© 2024 Home Mate | <a href="#">Contact Us</a></p>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetchCategories();
-        });
+    <script src="category.js"></script>
 
-        function fetchCategories() {
-            fetch('http://localhost:5000/api/v1/categories') // Replace with your actual API endpoint
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(category => {
-                        addCategory(category.name, category.items);
-                    });
-                })
-                .catch(error => {
-                    console.error('Error fetching categories:', error);
-                });
-        }
-
-        function addCategory(categoryName, items) {
-            const card = document.createElement('div');
-            card.classList.add('card');
-            card.style.width = '15rem';
-
-            const cardHeader = document.createElement('div');
-            cardHeader.classList.add('card-header');
-            cardHeader.textContent = categoryName;
-            card.appendChild(cardHeader);
-
-            const listGroup = document.createElement('ul');
-            listGroup.classList.add('list-group', 'list-group-flush');
-
-            items.forEach(item => {
-                const listItem = document.createElement('li');
-                listItem.classList.add('list-group-item');
-                listItem.textContent = item.name; // Assuming items have a 'name' property
-                listGroup.appendChild(listItem);
-            });
-
-            card.appendChild(listGroup);
-            document.getElementById('categoryContainer').appendChild(card);
-        }
-    </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
+
