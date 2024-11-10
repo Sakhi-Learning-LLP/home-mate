@@ -3,61 +3,95 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
     <title>Categories</title>
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
         }
 
         body {
-            background-color: #f8f4e3; /* Same background color as Home */
-            font-family: 'Arial', sans-serif; /* Same font family */
+            background-color: #f8f4e3;
+            /* Same background color as Home */
+            font-family: 'Arial', sans-serif;
+            /* Same font family */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
         nav {
-            background-color: #e3c9b8; /* Same navbar background color */
-            padding: 0.5rem 1rem; /* Ensure consistent padding */
+            background-color: #e3c9b8;
+            /* Same navbar background color */
+            padding: 0.5rem 1rem;
+            /* Ensure consistent padding */
         }
 
         .navbar-brand img {
             height: 30px;
         }
 
+        #categoryName {
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            /* Dark color */
+            margin: auto;
+            display: block;
+            text-transform: uppercase;
+            /* Converts to uppercase */
+            font-size: 24px;
+            /* Increases the font size */
+        }
+
         .add-item-button {
             position: relative;
-            margin-left: 20px; /* Add margin for spacing */
+            margin-left: 20px;
+            /* Add margin for spacing */
         }
 
         .add-item-button button {
-            background-color: #b29a7a; /* Darker background color for the button */
-            border: none; /* Remove border */
-            border-radius: 50%; /* Make it circular */
-            width: 50px; /* Set width */
-            height: 50px; /* Set height */
-            display: flex; /* Center the icon */
-            align-items: center; /* Center vertically */
-            justify-content: center; /* Center horizontally */
-            transition: background-color 0.3s; /* Add transition for hover effect */
+            background-color: #b29a7a;
+            /* Darker background color for the button */
+            border: none;
+            /* Remove border */
+            border-radius: 50%;
+            /* Make it circular */
+            width: 50px;
+            /* Set width */
+            height: 50px;
+            /* Set height */
+            display: flex;
+            /* Center the icon */
+            align-items: center;
+            /* Center vertically */
+            justify-content: center;
+            /* Center horizontally */
+            transition: background-color 0.3s;
+            /* Add transition for hover effect */
         }
 
         .add-item-button button:hover {
-            background-color: #a58d74; /* Darker shade on hover */
+            background-color: #a58d74;
+            /* Darker shade on hover */
         }
 
         .add-item-message {
             display: none;
             position: absolute;
-            bottom: auto; /* Adjusted to show above the button */
+            bottom: auto;
+            /* Adjusted to show above the button */
             right: 10;
-            background-color: #f5e3d8; /* Light background for message */
+            background-color: #f5e3d8;
+            /* Light background for message */
             color: black;
             padding: 5px;
             border-radius: 5px;
@@ -65,28 +99,36 @@
         }
 
         .add-item-button:hover .add-item-message {
-            display: block; /* Show message on hover */
+            display: block;
+            /* Show message on hover */
         }
 
         .breadcrumb {
-            background-color: #f2f2f2; /* Gray background for breadcrumb */
-            font-size: 16px; /* Font size for breadcrumb */
-            padding: 10px; /* Padding for breadcrumb */
+            background-color: #f2f2f2;
+            /* Gray background for breadcrumb */
+            font-size: 16px;
+            /* Font size for breadcrumb */
+            padding: 10px;
+            /* Padding for breadcrumb */
         }
 
         .card {
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff; /* White background for cards */
-            margin: 20px;
+            background-color: #ffffff;
+            /* White background for cards */
+            margin: 10px 0;
         }
 
         .card-header {
-            background-color: #d2b59c; /* Same header color as Home */
+            background-color: #d2b59c;
+            /* Same header color as Home */
             color: white;
             font-weight: bold;
-            position: relative; /* Make it relative for positioning child elements */
+            position: relative;
+            padding: 10px;
         }
+
 
         .list-group-item {
             border-radius: 10px;
@@ -94,7 +136,8 @@
         }
 
         .list-group-item:hover {
-            background-color: #f5e3d8; /* Hover effect on list items */
+            background-color: #f5e3d8;
+            /* Hover effect on list items */
         }
 
         .footer {
@@ -119,41 +162,57 @@
         }
 
         .container {
-            margin-top: 2em; /* Margin for container */
+            margin-top: 2em;
+            /* Margin for container */
         }
 
         #itemFormContainer {
-            display: none; /* Hide the form initially */
+            display: none;
+            /* Hide the form initially */
             margin-top: 20px;
+        }
+
+        #itemFormContainer .card {
+            width: 100%;
+            /* Full width for form */
+            max-width: none;
+            /* Remove max-width restriction */
         }
 
         /* Updated button styles */
         .btn-primary {
-            background-color: #d2b59c; /* Updated primary button color */
-            border-color: #d2b59c; /* Match border color */
+            background-color: #d2b59c;
+            /* Updated primary button color */
+            border-color: #d2b59c;
+            /* Match border color */
         }
 
         .btn-primary:hover {
-            background-color: #c2a288; /* Darker shade on hover */
-            border-color: #c2a288; /* Match border color */
+            background-color: #c2a288;
+            /* Darker shade on hover */
+            border-color: #c2a288;
+            /* Match border color */
         }
 
         /* Style for checkboxes */
         input[type="checkbox"] {
             width: 20px;
             height: 20px;
-            accent-color: green; /* Green color when the checkbox is clicked */
+            accent-color: green;
+            /* Green color when the checkbox is clicked */
             cursor: pointer;
             transition: transform 0.2s ease-in-out;
         }
 
         input[type="checkbox"]:checked {
-            transform: scale(1.2); /* Slightly increase the size when checked */
+            transform: scale(1.2);
+            /* Slightly increase the size when checked */
         }
 
         /* Delete button styling */
         .delete-button {
-            background-color: #ff6666; /* Red background for delete button */
+            background-color: #ff6666;
+            /* Red background for delete button */
             border: none;
             color: white;
             padding: 5px 10px;
@@ -164,24 +223,148 @@
         }
 
         .delete-button:hover {
-            background-color: #cc0000; /* Darker red on hover */
+            background-color: #cc0000;
+            /* Darker red on hover */
         }
 
-        /* Increase the size of the card containing items */
-        .card {
-            width: 100%; /* Make the card larger */
-            max-width: 900px; /* Set a maximum width */
-            margin: 20px auto; /* Center the card horizontally */
+        #categoryContainer .card {
+            width: 100%;
+            max-width: 250px;
+            /* Restrict card width */
+            margin: 20px;
         }
 
         .list-group-item {
-            font-size: 18px; /* Increase the font size of items */
+            font-size: 18px;
+            /* Increase the font size of items */
         }
 
         .list-group-item input[type="checkbox"] {
-            margin-right: 10px; /* Add some space between the checkbox and text */
+            margin-right: 10px;
+            /* Add some space between the checkbox and text */
         }
 
+        #categoryContainer {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            /* Max 4 columns, flexible width */
+            gap: 20px;
+            /* Add space between items */
+            justify-items: center;
+            /* Center the cards horizontally */
+        }
+
+        /* Adjustments for Flip Cards to match page theme */
+        .flip-card {
+            background-color: transparent;
+            width: 250px;
+            /* Set desired width */
+            height: 200px;
+            /* Set desired height */
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card-inner.flipped {
+            transform: rotateY(180deg);
+            /* Apply the flip when the 'flipped' class is added */
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 10px;
+            font-family: 'Arial', sans-serif;
+            /* Match your font style */
+        }
+
+        /* Front of the card with updated background color */
+        .flip-card-front {
+
+            /* Add padding to move content away from the border */
+            background-color: #e3c9b8;
+            /* Updated color for the front */
+            color: #333;
+            /* Dark text color for contrast */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Soft shadow */
+        }
+
+        .flip-card-front p {
+            margin-bottom: 10px;
+            /* Add margin between paragraphs */
+            padding-left: 15px;
+            /* Add padding to move content away from the border */
+        }
+
+        /* Back of the card with deeper nude shade */
+        .flip-card-back {
+            position: relative;
+            transform: rotateY(180deg);
+            background-color: #bfa284;
+            /* Deeper nude for the back */
+            color: white;
+            /* White text for contrast */
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* Slightly stronger shadow */
+        }
+
+        /* Flip card header to match card styling */
+        .flip-card .card-header {
+            background-color: #d2b59c;
+            /* Darker nude for the header */
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        /* Flip card body to match the theme */
+        .flip-card .card-body {
+            background-color: #f8f4e3;
+            /* Light nude for the card body */
+            color: #333;
+            padding: 20px;
+            text-align: center;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        .flip-card-back {
+            position: relative;
+            /* Allows positioning of child elements */
+            padding: 10px;
+        }
+
+        /* Position the delete button at the bottom-left */
+        .flip-card-back .delete-btn {
+            position: absolute;
+            bottom: 10px;
+            /* Place 10px from the bottom */
+            left: 10px;
+            /* Place 10px from the left */
+        }
+
+        /* Position the flip back button at the bottom-right */
+        .flip-card-back .flip-back-btn {
+            position: absolute;
+            bottom: 10px;
+            /* Place 10px from the bottom */
+            right: 10px;
+            /* Place 10px from the right */
+        }
     </style>
 </head>
 
@@ -191,67 +374,77 @@
             <a class="navbar-brand" href="Home.html">
                 <img src="home.png" alt="Home" class="img-fluid" style="max-width: 50px;">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <!-- <span class="navbar-toggler-icon"></span> -->
-            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-                <li class="nav-item add-item-button">
+                <span id="categoryName" class="navbar-text ms-3"></span> <!-- New category name display -->
+                <div class="nav-item add-item-button">
                     <button class="btn" id="showFormButton">
-                        <i class="bi bi-plus" style="font-size: 24px; color: white;"></i> <!-- Plus icon -->
+                        <i class="bi bi-plus" style="font-size: 24px; color: white;"></i>
                     </button>
-                    <div class="add-item-message">Add Item</div> <!-- Hover message -->
-                </li>
+                    <div class="add-item-message">Add Item</div>
+                </div>
             </div>
         </div>
     </nav>
 
-    <!-- <div>
-        <ul id="ItemList"></ul>
-    </div> -->
     <div class="container">
-        <!-- <h2 class="text-center mb-4">Category Items:</h2> -->
-        <div id="categoryContainer" style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap;"></div>
+        <div id="categoryContainer"
+            style="display: flex; flex-direction: row; justify-content: center; flex-wrap: wrap;">
+        </div>
 
-        <div id="ResponseMessage" class="text-danger mt-2"></div>
-        <div id="itemFormContainer">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h2>Add Item to Category</h2>
-                    <button class="btn-close" id="cancelButton" aria-label="Close" style="position: absolute; right: 10px; top: 10px;"></button>
-                </div>
-                <div class="card-body">
-                    <form id="ItemForm">
-                        <div class="mb-3">
-                            <input type="text" id="ItemName" class="form-control"
-                                placeholder="Enter item name" required />
-                        </div>
-                        <div class="mb-3">
-                            <input type="text" id="ItemDescription" class="form-control"
-                                placeholder="Enter item description (optional)" />
-                        </div>
-                        <div class="mb-3"></div>
-                            <input type="text" id="ItemInstruction" class="form-control"
-                                placeholder="How you want to clean the item (optional)" />
-                        </div>
-                        <button type="submit" class="btn btn-primary">Add Item</button>
-                    </form>
-                </div>
+        <div id="ResponseMessage" style="color: green; font-weight: bold; display: none;"></div>
+
+        <div id="itemFormContainer" class="card">
+            <div class="card-header">
+                Add Item
+            </div>
+            <div class="card-body">
+                <form id="ItemForm">
+                    <div class="mb-3">
+                        <label for="ItemName" class="form-label">Item Name</label>
+                        <input type="text" class="form-control" id="ItemName" placeholder="Enter Item Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ItemDescription" class="form-label">Description</label>
+                        <input class="form-control" id="ItemDescription"
+                            placeholder="Enter Item Description (optional)"></input>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ItemInstruction" class="form-label">Instructions</label>
+                        <textarea class="form-control" id="ItemInstruction"
+                            placeholder="Enter Item Instruction (optional)"></textarea>
+                    </div>
+                    <div class="'mb-3">
+                        <label for="ItemFrequency" class="form-label">Select Frequency</label>
+                        <select id="ItemFrequency">
+                            <option value="">Choose</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="'mb-3">
+                        <label for="ItemServiceDate" class="form-label">Select Service Date</label>
+                        <input type="text" class="form-control" id="ItemServiceDate" placeholder="Choose Service Date"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" id="cancelButton">Cancel</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <div class="footer mt-4">
-        <p>© 2024 Home Mate | <a href="#">Contact Us</a></p>
+    <div class="footer">
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
     </div>
 
     <script src="category.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="dueItem.js"></script> -->
 </body>
 
 </html>
-
-
